@@ -14,6 +14,7 @@ namespace ESMonitorWebApi.Controllers
             var version = new VersionViewModel
             {
                 version = _dbContext.SysConfig.First(obj => obj.ConfigType == "Version" && obj.ConfigName == system).ConfigValue.Trim(),
+                versionCode = int.Parse(_dbContext.SysConfig.First(obj => obj.ConfigType == "VersionCode" && obj.ConfigName == system).ConfigValue.Trim()),
                 description = _dbContext.SysConfig.First(obj => obj.ConfigType == "VersionDescription" && obj.ConfigName == system).ConfigValue.Trim(),
             };
 
