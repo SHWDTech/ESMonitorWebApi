@@ -22,6 +22,7 @@ namespace ESMonitorWebApi.Controllers
 
             var spread = new Spread
             {
+                city = _dbContext.Province.First().Province.Trim(),
                 projectType = 1,
                 good = mins.Count(obj => obj.TP < 400),
                 normal = mins.Count(obj => obj.TP > 400 && obj.TP < 1000),

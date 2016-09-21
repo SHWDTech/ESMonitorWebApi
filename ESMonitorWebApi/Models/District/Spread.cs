@@ -2,6 +2,8 @@
 {
     public class Spread
     {
+        public string city { get; set; }
+
         public int projectType { get; set; }
 
         public int good { get; set; }
