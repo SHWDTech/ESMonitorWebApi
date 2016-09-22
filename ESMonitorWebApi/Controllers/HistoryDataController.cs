@@ -53,7 +53,7 @@ namespace ESMonitorWebApi.Controllers
                         {
                             date = esMin.UpdateTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
                             rate = Global.GetRate(esMin.TP / 1000.0),
-                            tsp = Math.Round(esMin.TP, 2),
+                            tsp = Math.Round(esMin.TP / 1000.0, 2),
                         });
                 }
 
@@ -78,7 +78,7 @@ namespace ESMonitorWebApi.Controllers
                         {
                             date = esMin.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                             rate = Global.GetRate(esMin.TP / 1000.0),
-                            tsp = Math.Round(esMin.TP, 2),
+                            tsp = Math.Round(esMin.TP / 1000.0, 2),
                         });
                 }
 
@@ -104,7 +104,7 @@ namespace ESMonitorWebApi.Controllers
                     {
                         date = esMin.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                         rate = Global.GetRate(esMin.TP / 1000.0),
-                        tsp = Math.Round(esMin.TP, 2),
+                        tsp = Math.Round(esMin.TP / 1000.0, 2),
                     });
                 }
 

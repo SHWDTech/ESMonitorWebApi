@@ -25,8 +25,8 @@ namespace ESMonitorWebApi.Controllers
             spread.city = _dbContext.Province.First().Province.Trim();
             var road = new Pie
             {
-                projectType = 1,
-                good = 0,
+                projectType = 0,
+                good = 1,
                 normal = 0,
                 bad = 0
             };
