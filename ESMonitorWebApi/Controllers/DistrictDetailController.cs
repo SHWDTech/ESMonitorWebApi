@@ -18,13 +18,14 @@ namespace ESMonitorWebApi.Controllers
             var type = Global.GetProjectType(int.Parse(HttpContext.Current.Request["projectType"]));
             var district = int.Parse(HttpContext.Current.Request["district"]);
             var country = _dbContext.Country.First(obj => obj.Id == district);
-            var stats = _dbContext.Stats.Where(obj => obj.ProType == type);
+            var stats = _dbContext.Stats.Where(obj => obj.ProType == type && obj.Country == country.Id);
             var details = new List<DistrictDetail>();
             foreach (var stat in stats)
             {
                 var min = _dbContext.EsMin.Where(obj => obj.StatId == stat.Id)
                         .OrderByDescending(item => item.UpdateTime)
-                        .First();
+                        .FirstOrDefault();
+                if (min == null) continue;
                 var detail = new DistrictDetail
                 {
                     districtName = country.Country.Trim(),

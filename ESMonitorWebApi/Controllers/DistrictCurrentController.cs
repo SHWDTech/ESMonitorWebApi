@@ -30,7 +30,8 @@ namespace ESMonitorWebApi.Controllers
                     .Select(statse => _dbContext.EsMin
                         .Where(item => item.StatId == statse.Id)
                         .OrderByDescending(obj => obj.UpdateTime)
-                        .First())
+                        .FirstOrDefault())
+                    .Where(obj => obj != null)
                     .Select(min => min.TP).Sum();
                 dis.tspAvg = Math.Round(total / dis.count / 1000.0, 2);
 

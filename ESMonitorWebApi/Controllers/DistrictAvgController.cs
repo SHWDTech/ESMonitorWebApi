@@ -33,7 +33,8 @@ namespace ESMonitorWebApi.Controllers
                         .Select(statse => _dbContext.EsMin
                             .Where(item => item.StatId == statse.Id)
                             .OrderByDescending(obj => obj.UpdateTime)
-                            .First())
+                            .FirstOrDefault())
+                        .Where(obj => obj != null)
                         .Select(min => min.TP).Sum();
                     dis.tspAvg = Math.Round(total / dis.count / 1000.0, 2);
 
@@ -54,7 +55,8 @@ namespace ESMonitorWebApi.Controllers
                         .Select(statse => _dbContext.EsDay
                             .Where(item => item.StatId == statse.Id)
                             .OrderByDescending(obj => obj.UpdateTime)
-                            .First())
+                            .FirstOrDefault())
+                        .Where(obj => obj != null)
                         .Select(min => min.TP).Sum();
                     dis.tspAvg = Math.Round(total / dis.count / 1000.0, 2);
 
@@ -74,9 +76,9 @@ namespace ESMonitorWebApi.Controllers
                     dis.district = districtGroup.Key;
                     var total = districtGroup
                         .Select(statse => _dbContext.EsDay
-                            .Where(item => item.StatId == statse.Id && item.UpdateTime > month)
-                            .Average(obj => obj.TP))
-                            .Sum();
+                            .Where(item => item.StatId == statse.Id && item.UpdateTime > month))
+                            .Where(obj => obj.Any())
+                        .Sum(obj => obj.Average(item => item.TP));
                     dis.tspAvg = Math.Round(total / dis.count / 1000.0, 2);
 
                     avgs.Add(dis);
