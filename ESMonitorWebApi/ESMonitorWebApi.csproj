@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ESMonitorWD\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\Global.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\DistrictAvgController.cs" />
     <Compile Include="Controllers\DistrictCurrentController.cs" />
     <Compile Include="Controllers\DistrictDetailController.cs" />

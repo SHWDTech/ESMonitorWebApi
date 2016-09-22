@@ -11,10 +11,11 @@ namespace ESMonitorWebApi.Controllers
 {
     public class DistrictAvgController : ApiController
     {
-        private readonly EsMonitor _dbContext = new EsMonitor();
+        private EsMonitor _dbContext;
 
         public IEnumerable<DistrictAvg> Post()
         {
+            _dbContext = new EsMonitor(Global.GetConnString(HttpContext.Current.Request["city"]));
             var type = Global.GetProjectType(int.Parse(HttpContext.Current.Request["projectType"]));
             var districtGroups = _dbContext.Stats.Where(item => item.ProType == type).GroupBy(obj => obj.Country);
             var dataType = int.Parse(HttpContext.Current.Request["dataType"]);

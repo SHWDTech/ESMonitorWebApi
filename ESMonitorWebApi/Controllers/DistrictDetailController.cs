@@ -11,10 +11,11 @@ namespace ESMonitorWebApi.Controllers
 {
     public class DistrictDetailController : ApiController
     {
-        private readonly EsMonitor _dbContext = new EsMonitor();
+        private EsMonitor _dbContext;
 
         public IEnumerable<DistrictDetail> Post()
         {
+            _dbContext = new EsMonitor(Global.GetConnString(HttpContext.Current.Request["city"]));
             var type = Global.GetProjectType(int.Parse(HttpContext.Current.Request["projectType"]));
             var district = int.Parse(HttpContext.Current.Request["district"]);
             var country = _dbContext.Country.First(obj => obj.Id == district);

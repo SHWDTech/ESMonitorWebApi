@@ -11,10 +11,11 @@ namespace ESMonitorWebApi.Controllers
 {
     public class HistoryDataController : ApiController
     {
-        private readonly EsMonitor _dbContext = new EsMonitor();
+        private EsMonitor _dbContext;
 
         public IEnumerable<HistoryData> Post()
         {
+            _dbContext = new EsMonitor(Global.GetConnString(HttpContext.Current.Request["city"]));
             var type = Global.GetProjectType(int.Parse(HttpContext.Current.Request["projectType"]));
             var dataType = int.Parse(HttpContext.Current.Request["type"]);
             var typeStats = _dbContext.Stats.Where(obj => obj.ProType == type);

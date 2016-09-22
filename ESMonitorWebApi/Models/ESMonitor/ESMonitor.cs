@@ -9,6 +9,11 @@ namespace ESMonitorWebApi.Models.ESMonitor
         {
         }
 
+        public EsMonitor(string connectionName) : base(connectionName)
+        {
+            
+        }
+
         public virtual DbSet<T_Alarms> Alarms { get; set; }
         public virtual DbSet<T_AlarmType> AlarmType { get; set; }
         public virtual DbSet<T_Country> Country { get; set; }

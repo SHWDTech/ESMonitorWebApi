@@ -12,7 +12,7 @@ namespace ESMonitorWebApi.Controllers
 {
     public class MapController : ApiController
     {
-        private readonly EsMonitor _dbContext = new EsMonitor();
+        private EsMonitor _dbContext;
 
         /// <summary>
         /// 获取工地地图信息
@@ -20,6 +20,7 @@ namespace ESMonitorWebApi.Controllers
         /// <returns></returns>
         public IEnumerable<MapStat> Post()
         {
+            _dbContext = new EsMonitor(Global.GetConnString(HttpContext.Current.Request["city"]));
             var type = Global.GetProjectType(int.Parse(HttpContext.Current.Request["projectType"]));
             var mapstats = new List<MapStat>();
             var stats = _dbContext.Stats.Where(obj => obj.ProType == type);

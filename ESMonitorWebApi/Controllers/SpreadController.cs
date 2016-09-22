@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using System.Web;
 using System.Web.Http;
+using ESMonitorWebApi.Common;
 using ESMonitorWebApi.Models.District;
 using ESMonitorWebApi.Models.ESMonitor;
 
@@ -7,12 +9,12 @@ namespace ESMonitorWebApi.Controllers
 {
     public class SpreadController : ApiController
     {
-        private readonly EsMonitor _dbContext = new EsMonitor();
+        private EsMonitor _dbContext;
 
-        public Spread Get()
+        public Spread Post()
         {
+            _dbContext = new EsMonitor(Global.GetConnString(HttpContext.Current.Request["city"]));
             var spread = new Spread();
-
             var proOne = _dbContext.Stats.Where(obj => obj.ProType == "商业地产");
             var mins = proOne.Select(stat => _dbContext.EsMin
                         .Where(item => item.StatId == stat.Id)
@@ -23,7 +25,7 @@ namespace ESMonitorWebApi.Controllers
             spread.city = _dbContext.Province.First().Province.Trim();
             var road = new Pie
             {
-                projectType = 0,
+                projectType = 1,
                 good = 0,
                 normal = 0,
                 bad = 0
@@ -42,7 +44,7 @@ namespace ESMonitorWebApi.Controllers
             var wharf = new Pie
             {
                 projectType = 2,
-                good = 0,
+                good = 1,
                 normal = 0,
                 bad = 0
             };
@@ -51,7 +53,7 @@ namespace ESMonitorWebApi.Controllers
             var mixingplant = new Pie
             {
                 projectType = 3,
-                good = 0,
+                good = 1,
                 normal = 0,
                 bad = 0
             };

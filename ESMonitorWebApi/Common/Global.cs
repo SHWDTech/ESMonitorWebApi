@@ -24,5 +24,16 @@
             }
             return 2;
         }
+
+        public static string GetConnString(string city)
+        {
+            switch (city)
+            {
+                case "上海":
+                    return "ESMonitorWD";
+                default:
+                    return "ESMonitor";
+            }
+        }
     }
 }
