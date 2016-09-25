@@ -40,7 +40,10 @@ namespace ESMonitorWebApi.Controllers
             var list = new List<HistoryData>();
             foreach (var stat in stats)
             {
-                var his = new HistoryData();
+                var his = new HistoryData
+                {
+                    stat = stat.Id
+                };
                 var mins = _dbContext.EsMin
                         .Where(obj => obj.StatId == stat.Id)
                         .OrderByDescending(item => item.UpdateTime)
@@ -67,7 +70,10 @@ namespace ESMonitorWebApi.Controllers
             var list = new List<HistoryData>();
             foreach (var stat in stats)
             {
-                var his = new HistoryData();
+                var his = new HistoryData
+                {
+                    stat = stat.Id
+                };
                 var mins = _dbContext.EsHour
                         .Where(obj => obj.StatId == stat.Id)
                         .OrderByDescending(item => item.UpdateTime)
@@ -93,7 +99,10 @@ namespace ESMonitorWebApi.Controllers
             var list = new List<HistoryData>();
             foreach (var stat in stats)
             {
-                var his = new HistoryData();
+                var his = new HistoryData
+                {
+                    stat = stat.Id
+                };
                 var mins = _dbContext.EsDay
                         .Where(obj => obj.StatId == stat.Id)
                         .OrderByDescending(item => item.UpdateTime)
