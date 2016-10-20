@@ -15,6 +15,14 @@ namespace ESMonitorWebApi.Models.District
 
         public double tsp { get; set; }
 
+        public double windSpeed { get; set; }
+
+        public double windDirection { get; set; }
+
+        public double temperature { get; set; }
+
+        public double humidity { get; set; }
+
         public int rate { get; set; }
     }
 }

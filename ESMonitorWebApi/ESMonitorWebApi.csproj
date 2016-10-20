@@ -214,6 +214,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\District\Cordinate.cs" />
     <Compile Include="Models\District\DistrictAvg.cs" />
     <Compile Include="Models\District\DistrictDetail.cs" />
     <Compile Include="Models\District\HistoryData.cs" />

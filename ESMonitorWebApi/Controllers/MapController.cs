@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -40,18 +39,23 @@ namespace ESMonitorWebApi.Controllers
             {
                 var min = _dbContext.EsMin.OrderByDescending(obj => obj.UpdateTime)
                         .FirstOrDefault(item => item.StatId == stat.Id);
+                var cordinate = Global.ConvertToGdCordinate((double)stat.Longitude, (double)stat.Latitude);
                 var mapStat = new MapStat
                 {
                     id = stat.Id,
                     name = stat.StatName.Trim(),
-                    latitude = stat.Latitude.ToString(CultureInfo.InvariantCulture),
-                    longitude = stat.Longitude.ToString(CultureInfo.InvariantCulture)
+                    latitude = cordinate.Latitude,
+                    longitude = cordinate.Longitude
                 };
                 if (min != null)
                 {
                     if (min.UpdateTime != null) mapStat.time = min.UpdateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
                     mapStat.tsp = Math.Round(min.TP / 1000.0 , 2);
                     mapStat.rate = Global.GetRate(min.TP / 1000.0);
+                    mapStat.windSpeed = min.WindSpeed;
+                    mapStat.windDirection = min.WindDirection;
+                    mapStat.temperature = min.Temperature;
+                    mapStat.humidity = min.Humidity;
                 }
                 mapstats.Add(mapStat);
             }

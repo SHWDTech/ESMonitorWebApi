@@ -1,4 +1,8 @@
-﻿namespace ESMonitorWebApi.Common
+﻿using System;
+using System.Globalization;
+using ESMonitorWebApi.Models.District;
+
+namespace ESMonitorWebApi.Common
 {
     public class Global
     {
@@ -34,6 +38,24 @@
                 default:
                     return "ESMonitor";
             }
+        }
+
+        public static Cordinate ConvertToGdCordinate(double longitude, double latitude)
+        {
+            var pi = 3.14159265358979324 * 3000.0 / 180.0;
+
+            var gdlong = longitude - 0.0065;
+            var gdlat = latitude - 0.006;
+
+            var z = Math.Sqrt(gdlong * gdlong + gdlat * gdlat) - 0.00002 * Math.Sin(gdlat * pi);
+
+            var theta = Math.Atan2(gdlat, gdlong) - 0.000003 * Math.Cos(gdlong * pi);
+
+            return new Cordinate()
+            {
+                Longitude = (z * Math.Cos(theta)).ToString(CultureInfo.InvariantCulture),
+                Latitude = (z * Math.Sin(theta)).ToString(CultureInfo.InvariantCulture)
+            };
         }
     }
 }
