@@ -10,10 +10,6 @@ namespace ESMonitorWebApi.Models.ESMonitor
     {
         public long ID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string UsereName { get; set; }
-
         public int DevId { get; set; }
 
         public DateTime AddTime { get; set; }

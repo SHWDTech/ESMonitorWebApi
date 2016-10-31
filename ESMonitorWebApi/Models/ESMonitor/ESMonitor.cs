@@ -5,23 +5,24 @@ namespace ESMonitorWebApi.Models.ESMonitor
     public class EsMonitor : DbContext
     {
         public EsMonitor()
-            : base("name=ESMonitor")
+            : base("name=EsMonitor")
         {
         }
 
-        public EsMonitor(string connectionName) : base(connectionName)
+        public EsMonitor(string connString) : base(connString)
         {
             
         }
 
-        public virtual DbSet<T_Alarms> Alarms { get; set; }
         public virtual DbSet<T_AlarmType> AlarmType { get; set; }
+        public virtual DbSet<T_Camera> Camera { get; set; }
         public virtual DbSet<T_Country> Country { get; set; }
         public virtual DbSet<T_DevAddr> DevAddr { get; set; }
         public virtual DbSet<T_Devs> Devs { get; set; }
         public virtual DbSet<T_ESDay> EsDay { get; set; }
         public virtual DbSet<T_ESHour> EsHour { get; set; }
         public virtual DbSet<T_ESMin> EsMin { get; set; }
+        public virtual DbSet<T_ESMin_Fifteen> EsMinFifteen { get; set; }
         public virtual DbSet<T_Files> Files { get; set; }
         public virtual DbSet<T_GroupModules> GroupModules { get; set; }
         public virtual DbSet<T_Photos> Photos { get; set; }
@@ -36,16 +37,12 @@ namespace ESMonitorWebApi.Models.ESMonitor
         public virtual DbSet<T_UserInGroups> UserInGroups { get; set; }
         public virtual DbSet<T_Users> Users { get; set; }
         public virtual DbSet<T_UserStats> UserStats { get; set; }
-        public virtual DbSet<T_Camera> Camera { get; set; }
+        public virtual DbSet<T_Alarms> Alarms { get; set; }
         public virtual DbSet<T_ESDaytemp1> EsDaytemp1 { get; set; }
         public virtual DbSet<T_Offset> Offset { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<T_Alarms>()
-                .Property(e => e.Country)
-                .IsUnicode(false);
-
             modelBuilder.Entity<T_AlarmType>()
                 .Property(e => e.Name)
                 .IsFixedLength();
@@ -54,6 +51,30 @@ namespace ESMonitorWebApi.Models.ESMonitor
                 .HasMany(e => e.T_Stats)
                 .WithOptional(e => e.T_AlarmType)
                 .HasForeignKey(e => e.AlarmType);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.CameraName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.DnsAddr)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.Port)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.UserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.PassWord)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<T_Camera>()
+                .Property(e => e.Type)
+                .IsUnicode(false);
 
             modelBuilder.Entity<T_Country>()
                 .Property(e => e.Country)
@@ -72,6 +93,10 @@ namespace ESMonitorWebApi.Models.ESMonitor
             modelBuilder.Entity<T_Devs>()
                 .Property(e => e.VideoURL)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<T_Devs>()
+                .Property(e => e.OuterCode)
+                .IsFixedLength();
 
             modelBuilder.Entity<T_ESDay>()
                 .Property(e => e.DataStatus)
@@ -107,10 +132,6 @@ namespace ESMonitorWebApi.Models.ESMonitor
             modelBuilder.Entity<T_Files>()
                 .Property(e => e.Path)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<T_Photos>()
-                .Property(e => e.UsereName)
-                .IsFixedLength();
 
             modelBuilder.Entity<T_Photos>()
                 .Property(e => e.FileName)
@@ -200,28 +221,8 @@ namespace ESMonitorWebApi.Models.ESMonitor
                 .Property(e => e.Data)
                 .IsFixedLength();
 
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.CameraName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.DnsAddr)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.Port)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.UserName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.PassWord)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<T_Camera>()
-                .Property(e => e.Type)
+            modelBuilder.Entity<T_Alarms>()
+                .Property(e => e.Country)
                 .IsUnicode(false);
 
             modelBuilder.Entity<T_ESDaytemp1>()

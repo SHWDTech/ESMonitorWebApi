@@ -8,6 +8,8 @@ namespace ESMonitorWebApi.Models.ESMonitor
 
     public partial class T_Alarms
     {
+        [Key]
+        [Column(Order = 0)]
         public int Id { get; set; }
 
         public int? StatId { get; set; }
@@ -23,6 +25,8 @@ namespace ESMonitorWebApi.Models.ESMonitor
         [StringLength(20)]
         public string Country { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
         public bool IsReaded { get; set; }
     }
 }

@@ -28,5 +28,8 @@ namespace ESMonitorWebApi.Models.ESMonitor
 
         [StringLength(50)]
         public string VideoURL { get; set; }
+
+        [StringLength(50)]
+        public string OuterCode { get; set; }
     }
 }

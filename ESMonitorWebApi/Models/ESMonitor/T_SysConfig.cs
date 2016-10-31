@@ -20,7 +20,7 @@ namespace ESMonitorWebApi.Models.ESMonitor
         public string ConfigName { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(500)]
         public string ConfigValue { get; set; }
     }
 }

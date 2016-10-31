@@ -219,7 +219,7 @@
     <Compile Include="Models\District\DistrictDetail.cs" />
     <Compile Include="Models\District\HistoryData.cs" />
     <Compile Include="Models\District\Spread.cs" />
-    <Compile Include="Models\ESMonitor\ESMonitor.cs" />
+    <Compile Include="Models\ESMonitor\EsMonitor.cs" />
     <Compile Include="Models\ESMonitor\T_Alarms.cs" />
     <Compile Include="Models\ESMonitor\T_AlarmType.cs" />
     <Compile Include="Models\ESMonitor\T_Camera.cs" />
@@ -230,6 +230,7 @@
     <Compile Include="Models\ESMonitor\T_ESDaytemp1.cs" />
     <Compile Include="Models\ESMonitor\T_ESHour.cs" />
     <Compile Include="Models\ESMonitor\T_ESMin.cs" />
+    <Compile Include="Models\ESMonitor\T_ESMin_Fifteen.cs" />
     <Compile Include="Models\ESMonitor\T_Files.cs" />
     <Compile Include="Models\ESMonitor\T_GroupModules.cs" />
     <Compile Include="Models\ESMonitor\T_Offset.cs" />
