@@ -8,6 +8,6 @@
 
         public string description { get; set; }
 
-        public string resourceUrl { get; set; }
+        public string VersionUrl { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace ESMonitorWebApi.Controllers
 
             if (system == "Android")
             {
-                version.resourceUrl =
+                version.VersionUrl =
                     _dbContext.SysConfig.First(obj => obj.ConfigType == "VersionUrl" && obj.ConfigName == system)
                         .ConfigValue.Trim();
             }
